@@ -5,13 +5,14 @@
 
 
 	<script>
-	/* When the user clicks on the button,
-	toggle between hiding and showing the dropdown content */
+	/* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+	
 	function myFunction() {
 		document.getElementById("myDropdown").classList.toggle("show");
 	}
 
 	// Close the dropdown if the user clicks outside of it
+	
 	window.onclick = function(event) {
 	  if (!event.target.matches('.dropbtn')) {
 
@@ -32,12 +33,22 @@
 	function refresh() {
 		
 		$.get("/status/data", function(data, status){
-			var innerString = "<tr><th>Device-ID</th><th>Device-Type</th><th>Connection Status</th><th>Close-Code</th><th>Reason</th><th>Client-Address</th></tr>";
-
+			/* var innerString = "<tr><th>Device-ID</th><th>Device-Type</th><th>Connection Status</th><th>Close-Code</th><th>Reason</th><th>Client-Address</th></tr>"; */
+			
+			var innerString = "<tr><th>Device-ID</th><th>Device-Type</th><th>Class ID</th><th>Date Added</th><th>Location</th></tr>";
+			for(var i=0; i < data.length; i++) {
+				var color = data[i].Action=='Connect' ? 'green':'red';
+				innerString +="<tr><td>"+data[i].id +"</td><td>"+ data[i].type +"</td><td>"+data[i].classid +"</td><td>"+data[i].dateadded" +"</td><td>"+data[i].location +"</td></tr>";
+			} 
+			$('#t01').html(innerString);
+			
+			
+			/*
 			for(var i=0; i < data.length; i++) {
 				var color = data[i].Action=='Connect' ? 'green':'red';
 				innerString +="<tr><td>"+data[i].id +"</td><td>"+ data[i].type +"</td><td style='background-color:"+ color+"'>"+data[i].Action+"</td><td>"+(data[i].CloseCode||"") +"</td><td>"+(data[i].Reason||"" )+"</td><td>"+data[i].ClientAddr +"</td></tr>";
 			} 
+			*/
 			$('#t01').html(innerString);
 		});
 	}
