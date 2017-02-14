@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
 		appClient.on("deviceStatus", function (deviceType, deviceId, payload, topic) {
 			var obj = JSON.parse(payload);
 			obj.id = deviceId;
-			/*(obj.type = deviceType;*/ 
+			obj.type = deviceType; 
 
 			console.log("Device status from :: "+deviceType+" : "+deviceId+" is "+obj.Action+" with Close Code being "+obj.CloseCode+" and Reason being \""+obj.Reason+" "+obj.ClientAddr+"\"");
 			var info = _.find(data,function(itm){return itm.id == deviceId && itm.type == deviceType});
