@@ -11,6 +11,7 @@ appClient.on("connect", function () {
 appClient.on("deviceStatus", function (deviceType, deviceId, payload, topic) {
 	var obj = JSON.parse(payload);
 	// console.log("Action = "+obj.Action);
+	alert("Alert");
 	console.log("Device status from :: "+deviceType+" : "+deviceId+" is "+obj.Action+" with Close Code being "+obj.CloseCode+" and Reason being \""+obj.Reason+" "+obj.ClientAddr+"\"");
 	//appClient.disconnect();
 });
