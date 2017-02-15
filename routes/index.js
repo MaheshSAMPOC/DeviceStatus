@@ -35,7 +35,6 @@ router.get('/', function(req, res, next) {
 			obj.type = deviceType; 
 
 			console.log("Device status from :: "+deviceType+" : "+deviceId+" is "+obj.Action+" with Close Code being "+obj.CloseCode+" and Reason being \""+obj.Reason+" "+obj.ClientAddr+"\"");
-			alert ("This is a alert message!");
 			var info = _.find(data,function(itm){return itm.id == deviceId && itm.type == deviceType});
 
 			if(!info){
